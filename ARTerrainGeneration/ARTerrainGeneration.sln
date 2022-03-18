@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.32228.343
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HeightMapLib", "HeightMapLib\HeightMapLib.csproj", "{BC02716A-3AF8-4A53-B922-73E0B2827CB7}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BC02716A-3AF8-4A53-B922-73E0B2827CB7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BC02716A-3AF8-4A53-B922-73E0B2827CB7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BC02716A-3AF8-4A53-B922-73E0B2827CB7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BC02716A-3AF8-4A53-B922-73E0B2827CB7}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {6AF4B5F8-F7EE-4F7B-8D44-B8E171625A99}
+	EndGlobalSection
+EndGlobal
