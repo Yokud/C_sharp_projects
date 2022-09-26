@@ -194,23 +194,23 @@ namespace HeightMapLib
                     NoiseMap[i, j] = (NoiseMap[i, j] - h_min) / delta;
         }
 
-        public void SaveToBmp(string path, string name)
-        {
-            byte[,] hm = new byte[width, height];
-            var (h_min, h_max) = MinMax();
-            float delta = h_max - h_min;
+        //public void SaveToBmp(string path, string name)
+        //{
+        //    byte[,] hm = new byte[width, height];
+        //    var (h_min, h_max) = MinMax();
+        //    float delta = h_max - h_min;
 
-            for (int i = 0; i < Width; i++)
-                for (int j = 0; j < Height; j++)
-                    hm[i, j] = (byte)((NoiseMap[i, j] - h_min) / delta * 255);
+        //    for (int i = 0; i < Width; i++)
+        //        for (int j = 0; j < Height; j++)
+        //            hm[i, j] = (byte)((NoiseMap[i, j] - h_min) / delta * 255);
 
-            Bitmap bmp = new Bitmap(width, height);
-            for (int i = 0; i < width; i++)
-                for (int j = 0; j < height; j++)
-                    bmp.SetPixel(i, j, Color.FromArgb(hm[i, j], hm[i, j], hm[i, j]));
+        //    Bitmap bmp = new Bitmap(width, height);
+        //    for (int i = 0; i < width; i++)
+        //        for (int j = 0; j < height; j++)
+        //            bmp.SetPixel(i, j, Color.FromArgb(hm[i, j], hm[i, j], hm[i, j]));
 
-            bmp.Save(path + name + ".bmp", System.Drawing.Imaging.ImageFormat.Bmp);
-        }
+        //    bmp.Save(path + name + ".bmp", System.Drawing.Imaging.ImageFormat.Bmp);
+        //}
     }
 
     public class PerlinNoise : ILandGenerator, INoisable

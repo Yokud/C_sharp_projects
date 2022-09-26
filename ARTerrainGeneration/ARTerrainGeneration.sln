@@ -1,9 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.32228.343
+# Visual Studio Version 17
+VisualStudioVersion = 17.3.32901.215
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HeightMapLib", "HeightMapLib\HeightMapLib.csproj", "{BC02716A-3AF8-4A53-B922-73E0B2827CB7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HeightMapLib", "HeightMapLib\HeightMapLib.csproj", "{BC02716A-3AF8-4A53-B922-73E0B2827CB7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ARTGApp", "ARTGApp\ARTGApp.csproj", "{839BDF0A-A009-4C26-A7FF-36129199FE7F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{BC02716A-3AF8-4A53-B922-73E0B2827CB7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BC02716A-3AF8-4A53-B922-73E0B2827CB7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BC02716A-3AF8-4A53-B922-73E0B2827CB7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{839BDF0A-A009-4C26-A7FF-36129199FE7F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{839BDF0A-A009-4C26-A7FF-36129199FE7F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{839BDF0A-A009-4C26-A7FF-36129199FE7F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{839BDF0A-A009-4C26-A7FF-36129199FE7F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
