@@ -5,8 +5,206 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ARTGApp"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" MinHeight="500" MinWidth="990" WindowStyle="SingleBorderWindow" Height="500" Width="990" Closing="Window_Closing">
     <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="380*"></ColumnDefinition>
+            <ColumnDefinition Width="410*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
 
+        <Border Name="Border"
+                BorderThickness="2" 
+                BorderBrush="Black" 
+                Margin="10,10,5,5" 
+                Background="Gray" 
+                MinHeight="400" 
+                MinWidth="390" Grid.Column="1">
+            <Viewport3D Name="MainFrame" 
+                   MinHeight="400" 
+                   MinWidth="480" 
+                   Margin="0,0,0,0"/>
+        </Border>
+
+        <Grid Grid.Column="0" Margin="5,5,5,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="151*"/>
+                <RowDefinition Height="105*"/>
+                <RowDefinition Height="100*"/>
+                <RowDefinition Height="110*"/>
+            </Grid.RowDefinitions>
+
+            <Grid Grid.Column="0" Grid.Row="0" Margin="0,0,0,2.2">
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+
+                <GroupBox Header="Создание карты высот" Margin="5" MinWidth="75" Grid.Row="0">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+
+                        <Button Command="{Binding }"
+                            Content="Сгенерировать карту высот" 
+                            Margin="17,8,17,6" 
+                            Grid.Row="0"
+                            MinWidth="90" 
+                            MinHeight="26"
+                            Height="auto" Width="auto"
+                            Padding="2.5"/>
+                    </Grid>
+                </GroupBox>
+
+                <GroupBox Header="Изображение маркера" Margin="5" MinWidth="75" Grid.Row="1">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+
+                        <Button Command="{Binding }"
+                            Content="Получить маркер" 
+                            Margin="17,8,17,6"
+                            Grid.Row="0"
+                            MinWidth="90" 
+                            MinHeight="26"
+                            Height="auto" Width="auto"
+                            Padding="2.5"/>
+                    </Grid>
+                </GroupBox>
+            </Grid>
+
+
+            <GroupBox Header="Статус карты высот" Margin="5,5,5,5.2" Grid.Column="1" Grid.Row="0">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="0.6*"></RowDefinition>
+                        <RowDefinition Height="0.15*"></RowDefinition>
+                        <RowDefinition Height="0.25*"></RowDefinition>
+                    </Grid.RowDefinitions>
+
+                    <TextBox Name="StateText" IsReadOnly="True" TextWrapping="WrapWithOverflow" Margin="5" Grid.Row="0">
+                        Карта высот ещё не сгенерирована.
+                    </TextBox>
+                    <CheckBox Name="WithShadows" Content="С обработкой теней" IsChecked="True" Grid.Row="1" Margin="10, 2"/>
+
+                    <Button Command="{Binding }" Content="Создать модель ландшафта" Margin="15, 4.5, 15, 0.5" Grid.Row="2"/>
+                </Grid>
+            </GroupBox>
+
+            <GroupBox Header="Изменение видимой части" Grid.Column="0" Margin="5,4.8,5,7" Grid.Row="1" IsEnabled="False">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="0.55*"/>
+                        <RowDefinition Height="0.45*"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <DockPanel Grid.Row="0" Grid.Column="0">
+                        <Label Content="X:" Margin="2, 6, 0, 0" FontSize="12" DockPanel.Dock="Left"/>
+                        <TextBox Name="DeltaX_textbox" Margin="2,10,5,10" MinWidth="60" MaxLength="8"/>
+                    </DockPanel>
+
+                    <DockPanel Grid.Row="0" Grid.Column="1">
+                        <Label Content="Y:" Margin="2, 6, 0, 0" FontSize="12" DockPanel.Dock="Left"/>
+                        <TextBox Name="DeltaY_textbox" Margin="2,10,5,10" MinWidth="60" MaxLength="8"/>
+                    </DockPanel>
+
+                    <Button Command="{Binding }" Content="Применить" Grid.Row="1" Grid.ColumnSpan="2" Margin="40, 2.5, 40, 2.5"/>
+                </Grid>
+            </GroupBox>
+
+            <GroupBox Header="Поворот" Grid.Column="1" Margin="5,4.8,5,7" Grid.Row="1" IsEnabled="False">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="0.55*"/>
+                        <RowDefinition Height="0.45*"/>
+                    </Grid.RowDefinitions>
+
+                    <DockPanel Grid.Row="0">
+                        <Label Content="Угол (в градусах):" Margin="2, 6, 0, 0" FontSize="12" DockPanel.Dock="Left"/>
+                        <TextBox Name="DeltaAngle_textbox" Margin="2,10,5,10" MinWidth="60" MaxLength="8"/>
+                    </DockPanel>
+
+                    <Button Command="{Binding }" Content="Применить" Grid.Row="1" Margin="40, 2.5, 40, 2.5"/>
+                </Grid>
+            </GroupBox>
+
+            <GroupBox Name="ScaleTerrainView" Header="Масштабирование видимой части" Grid.Column="0" Margin="5,3,5,5" Grid.Row="2" Grid.ColumnSpan="2" IsEnabled="False">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="0.55*"/>
+                        <RowDefinition Height="0.45*"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <DockPanel Name="ScaleX" Grid.Row="0" Grid.Column="0">
+                        <Label Content="X:" Margin="2, 6, 0, 0" FontSize="12" DockPanel.Dock="Left"/>
+                        <TextBox Name="ScaleX_textbox" Margin="2,10,5,10" MinWidth="60" MaxLength="8"/>
+                    </DockPanel>
+
+                    <DockPanel Name="ScaleY" Grid.Row="0" Grid.Column="1">
+                        <Label Content="Y:" Margin="2, 6, 0, 0" FontSize="12" DockPanel.Dock="Left"/>
+                        <TextBox Name="ScaleY_textbox" Margin="2,10,5,10" MinWidth="60" MaxLength="8"/>
+                    </DockPanel>
+
+                    <DockPanel Name="ScaleZ" Grid.Row="0" Grid.Column="2">
+                        <Label Content="Z:" Margin="2, 6, 0, 0" FontSize="12" DockPanel.Dock="Left"/>
+                        <TextBox Name="ScaleZ_textbox" Margin="2,10,5,10" MinWidth="60" MaxLength="8"/>
+                    </DockPanel>
+
+                    <Button Command="{Binding }" Content="Применить" Grid.Row="1" Grid.Column="1" Margin="10, 2.5, 10, 2.5"/>
+                </Grid>
+            </GroupBox>
+
+            <GroupBox Name="RotateLightSourse" Header="Поворот источника света" Grid.Column="0" Margin="2,3,3,1.6" Grid.Row="3" Grid.ColumnSpan="2" IsEnabled="False">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <DockPanel Name="RotateX" Grid.Row="0" VerticalAlignment="Center" Margin="2">
+                        <TextBox Text="{Binding ElementName=slValue1, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
+                        <Label Content="  X:" Margin="2, 0, 0, 0" FontSize="12" DockPanel.Dock="Left"/>
+                        <Slider Name="slValue1" Orientation="Horizontal" Margin="0, 3, 5, 0" Value="45" Minimum="0" Maximum="180" TickFrequency="1" IsSnapToTickEnabled="True" 
+                                ValueChanged="slValue1_ValueChanged"
+                                Thumb.DragStarted="slValue1_DragStarted"
+                                Thumb.DragCompleted="slValue1_DragCompleted"/>
+                    </DockPanel>
+
+                    <DockPanel Name="RotateY" Grid.Row="1" VerticalAlignment="Center" Margin="2">
+                        <Label Content="  Y:" Margin="2, 0, 0, 0" FontSize="12" DockPanel.Dock="Left"/>
+                        <TextBox Text="{Binding ElementName=slValue2, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
+                        <Slider Name="slValue2" Orientation="Horizontal" Margin="0, 3, 5, 0" Minimum="0" Maximum="180" TickFrequency="1" IsSnapToTickEnabled="True"
+                                ValueChanged="slValue2_ValueChanged"
+                                Thumb.DragStarted="slValue2_DragStarted"
+                                Thumb.DragCompleted="slValue2_DragCompleted"/>
+                    </DockPanel>
+
+                    <DockPanel Name="RotateZ" Grid.Row="2" VerticalAlignment="Center" Margin="2">
+                        <Label Content="  Z:" Margin="2, 0, 0, 0" FontSize="12" DockPanel.Dock="Left"/>
+                        <TextBox Text="{Binding ElementName=slValue3, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
+                        <Slider Name="slValue3" Orientation="Horizontal" Margin="0, 3, 5, 0" Minimum="0" Maximum="180" TickFrequency="1" IsSnapToTickEnabled="True"
+                                ValueChanged="slValue3_ValueChanged"
+                                Thumb.DragStarted="slValue3_DragStarted"
+                                Thumb.DragCompleted="slValue3_DragCompleted"/>
+                    </DockPanel>
+                </Grid>
+            </GroupBox>
+
+        </Grid>
     </Grid>
 </Window>
