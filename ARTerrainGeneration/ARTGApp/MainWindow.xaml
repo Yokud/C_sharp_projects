@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ARTGApp"
         mc:Ignorable="d"
-        Title="MainWindow" MinHeight="500" MinWidth="990" WindowStyle="SingleBorderWindow" Height="500" Width="990" Closing="Window_Closing">
+        Title="MainWindow" MinHeight="500" MinWidth="990" WindowStyle="SingleBorderWindow" Height="500" Width="990">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="380*"></ColumnDefinition>
@@ -16,13 +16,25 @@
                 BorderThickness="2" 
                 BorderBrush="Black" 
                 Margin="10,10,5,5" 
-                Background="Gray" 
+                 
                 MinHeight="400" 
                 MinWidth="390" Grid.Column="1">
             <Viewport3D Name="MainFrame" 
                    MinHeight="400" 
                    MinWidth="480" 
-                   Margin="0,0,0,0"/>
+                   Margin="0,0,0,0">
+                <Viewport3D.Camera>
+                    <PerspectiveCamera x:Name="MainCamera" Position="0,7500,20000" LookDirection="0,-7500,-20000" />
+                </Viewport3D.Camera>
+                <Viewport3D.Children>
+                    <ModelVisual3D>
+                        <ModelVisual3D.Content>
+                            <!--Установка освещения - прямой свет-->
+                            <DirectionalLight Color="White" Direction="-1,-1,-2" />
+                        </ModelVisual3D.Content>
+                    </ModelVisual3D>
+                </Viewport3D.Children>
+            </Viewport3D>
         </Border>
 
         <Grid Grid.Column="0" Margin="5,5,5,0">
@@ -179,28 +191,28 @@
                     <DockPanel Name="RotateX" Grid.Row="0" VerticalAlignment="Center" Margin="2">
                         <TextBox Text="{Binding ElementName=slValue1, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
                         <Label Content="  X:" Margin="2, 0, 0, 0" FontSize="12" DockPanel.Dock="Left"/>
-                        <Slider Name="slValue1" Orientation="Horizontal" Margin="0, 3, 5, 0" Value="45" Minimum="0" Maximum="180" TickFrequency="1" IsSnapToTickEnabled="True" 
-                                ValueChanged="slValue1_ValueChanged"
+                        <Slider Name="slValue1" Orientation="Horizontal" Margin="0, 3, 5, 0" Value="45" Minimum="0" Maximum="180" TickFrequency="1" IsSnapToTickEnabled="True" />
+                        <!--ValueChanged="slValue1_ValueChanged"
                                 Thumb.DragStarted="slValue1_DragStarted"
-                                Thumb.DragCompleted="slValue1_DragCompleted"/>
+                                Thumb.DragCompleted="slValue1_DragCompleted"-->
                     </DockPanel>
 
                     <DockPanel Name="RotateY" Grid.Row="1" VerticalAlignment="Center" Margin="2">
                         <Label Content="  Y:" Margin="2, 0, 0, 0" FontSize="12" DockPanel.Dock="Left"/>
                         <TextBox Text="{Binding ElementName=slValue2, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
-                        <Slider Name="slValue2" Orientation="Horizontal" Margin="0, 3, 5, 0" Minimum="0" Maximum="180" TickFrequency="1" IsSnapToTickEnabled="True"
-                                ValueChanged="slValue2_ValueChanged"
+                        <Slider Name="slValue2" Orientation="Horizontal" Margin="0, 3, 5, 0" Minimum="0" Maximum="180" TickFrequency="1" IsSnapToTickEnabled="True"/>
+                                <!--ValueChanged="slValue2_ValueChanged"
                                 Thumb.DragStarted="slValue2_DragStarted"
-                                Thumb.DragCompleted="slValue2_DragCompleted"/>
+                                Thumb.DragCompleted="slValue2_DragCompleted"-->
                     </DockPanel>
 
                     <DockPanel Name="RotateZ" Grid.Row="2" VerticalAlignment="Center" Margin="2">
                         <Label Content="  Z:" Margin="2, 0, 0, 0" FontSize="12" DockPanel.Dock="Left"/>
                         <TextBox Text="{Binding ElementName=slValue3, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
-                        <Slider Name="slValue3" Orientation="Horizontal" Margin="0, 3, 5, 0" Minimum="0" Maximum="180" TickFrequency="1" IsSnapToTickEnabled="True"
-                                ValueChanged="slValue3_ValueChanged"
+                        <Slider Name="slValue3" Orientation="Horizontal" Margin="0, 3, 5, 0" Minimum="0" Maximum="180" TickFrequency="1" IsSnapToTickEnabled="True"/>
+                                <!--ValueChanged="slValue3_ValueChanged"
                                 Thumb.DragStarted="slValue3_DragStarted"
-                                Thumb.DragCompleted="slValue3_DragCompleted"/>
+                                Thumb.DragCompleted="slValue3_DragCompleted"-->
                     </DockPanel>
                 </Grid>
             </GroupBox>

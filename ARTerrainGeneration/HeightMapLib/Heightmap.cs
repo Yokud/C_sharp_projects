@@ -10,17 +10,11 @@ namespace HeightMapLib
         float[,] GenMap(int width, int height);
     }
 
-    public interface INoisable
-    {
-        float GenNoise(int x, int t);
-    }
-
     public class HeightMap
     {
         int width, height;
         NoiseExpresion expresion;
 
-        public float[,] NoiseMap { get; private set; }
         ILandGenerator LandGenerator { get; set; }
 
         public HeightMap(int width, int height, ILandGenerator lg, NoiseExpresion exp = null)
@@ -42,13 +36,11 @@ namespace HeightMapLib
             Seed = h.Seed;
         }
 
+        public float[,] NoiseMap { get; private set; }
+
         public int Width
         {
-            get
-            {
-                return width;
-            }
-
+            get => width;
             set
             {
                 if (value > 0)
@@ -78,35 +70,6 @@ namespace HeightMapLib
         {
             get => LandGenerator.Seed;
             set => LandGenerator.Seed = value;
-        }
-
-        public int Scale
-        {
-            get
-            {
-                return ((PerlinNoise)LandGenerator).Scale;
-            }
-        }
-        public int Octaves
-        {
-            get
-            {
-                return ((PerlinNoise)LandGenerator).Octaves;
-            }
-        }
-        public float Lacunarity
-        {
-            get
-            {
-                return ((PerlinNoise)LandGenerator).Lacunarity;
-            }
-        }
-        public float Persistence
-        {
-            get
-            {
-                return ((PerlinNoise)LandGenerator).Persistence;
-            }
         }
 
         private void GenMap()

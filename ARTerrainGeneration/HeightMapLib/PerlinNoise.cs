@@ -3,7 +3,7 @@ using System.Numerics;
 
 namespace HeightMapLib
 {
-    public class PerlinNoise : ILandGenerator, INoisable
+    public class PerlinNoise : ILandGenerator
     {
         int scale, octaves, seed;
         float lacunarity, persistence;
@@ -119,7 +119,7 @@ namespace HeightMapLib
                 SeedNums[i] = rd.Next(0, SeedNums.Length);
         }
 
-        public float GenNoise(int x, int y)
+        float GenNoise(int x, int y)
         {
             Vector2 pos = new Vector2((float)x / Scale, (float)y / Scale);
 
