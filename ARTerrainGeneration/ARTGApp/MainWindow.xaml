@@ -12,27 +12,19 @@
             <ColumnDefinition Width="410*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
 
-        <Border Name="Border"
-                BorderThickness="2" 
+        <Border BorderThickness="2" 
                 BorderBrush="Black" 
                 Margin="10,10,5,5" 
                  
                 MinHeight="400" 
                 MinWidth="390" Grid.Column="1">
-            <Viewport3D Name="MainFrame" 
-                   MinHeight="400" 
-                   MinWidth="480" 
-                   Margin="0,0,0,0">
-                <Viewport3D.Camera>
-                    <PerspectiveCamera x:Name="MainCamera" Position="0,7500,20000" LookDirection="0,-7500,-20000" />
-                </Viewport3D.Camera>
+            <Viewport3D MinHeight="400" 
+                        MinWidth="480" 
+                        Margin="0,0,0,0" 
+                        Camera="{Binding Camera}">
                 <Viewport3D.Children>
-                    <ModelVisual3D>
-                        <ModelVisual3D.Content>
-                            <!--Установка освещения - прямой свет-->
-                            <DirectionalLight Color="White" Direction="-1,-1,-2" />
-                        </ModelVisual3D.Content>
-                    </ModelVisual3D>
+                    <ModelVisual3D Content="{Binding LightSource}"/>
+                    <ModelVisual3D Content="{Binding Terrain}"/>
                 </Viewport3D.Children>
             </Viewport3D>
         </Border>

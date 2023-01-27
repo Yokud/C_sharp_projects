@@ -21,15 +21,11 @@ namespace ARTGApp
     /// </summary>
     public partial class MainWindow : Window
     {
-        TerrainModel model = new TerrainModel(1000, 1000);
-
         public MainWindow()
         {
             InitializeComponent();
 
             DataContext = new MainViewModel();
-
-            MainFrame.Children.Add(model);
         }
     }
 }

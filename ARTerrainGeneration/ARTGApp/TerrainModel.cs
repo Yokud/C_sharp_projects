@@ -47,12 +47,8 @@ namespace ARTGApp
             float min_z = float.PositiveInfinity;
 
             for (int y = 0; y < heightMap.Height; y++)
-            {
                 for (int x = 0; x < heightMap.Width; x++)
-                {
                     min_z = heightMap[x, y] * height_coef < min_z ? heightMap[x, y] * height_coef : min_z;
-                }
-            }
 
             for (int y = 0; y < heightMap.Height; y++) 
             {
