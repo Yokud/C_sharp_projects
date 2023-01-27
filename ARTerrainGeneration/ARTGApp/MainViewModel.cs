@@ -30,7 +30,7 @@ namespace ARTGApp
 
         public Light LightSource => light;
 
-        public TerrainModel Terrain => terrain;
+        public Model3D Terrain => terrain.Content;
 
         #region Commands
 
