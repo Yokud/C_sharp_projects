@@ -53,7 +53,7 @@
                             <RowDefinition/>
                         </Grid.RowDefinitions>
 
-                        <Button Command="{Binding }"
+                        <Button Command="{Binding Path=GenerateTerrainCommand}"
                             Content="Сгенерировать карту высот" 
                             Margin="17,8,17,6" 
                             Grid.Row="0"
@@ -86,21 +86,17 @@
             <GroupBox Header="Статус карты высот" Margin="5,5,5,5.2" Grid.Column="1" Grid.Row="0">
                 <Grid>
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="0.6*"></RowDefinition>
+                        <RowDefinition Height="0.85*"></RowDefinition>
                         <RowDefinition Height="0.15*"></RowDefinition>
-                        <RowDefinition Height="0.25*"></RowDefinition>
                     </Grid.RowDefinitions>
 
-                    <TextBox Name="StateText" IsReadOnly="True" TextWrapping="WrapWithOverflow" Margin="5" Grid.Row="0">
-                        Карта высот ещё не сгенерирована.
-                    </TextBox>
-                    <CheckBox Name="WithShadows" Content="С обработкой теней" IsChecked="True" Grid.Row="1" Margin="10, 2"/>
+                    <TextBox IsReadOnly="True" TextWrapping="WrapWithOverflow" Margin="5" Grid.Row="0" Text="{Binding StatusString}"/>
 
-                    <Button Command="{Binding }" Content="Создать модель ландшафта" Margin="15, 4.5, 15, 0.5" Grid.Row="2"/>
+                    <CheckBox Content="С обработкой теней" IsChecked="False" IsEnabled="False" Grid.Row="1" Margin="10, 2"/>
                 </Grid>
             </GroupBox>
 
-            <GroupBox Header="Изменение видимой части" Grid.Column="0" Margin="5,4.8,5,7" Grid.Row="1" IsEnabled="False">
+            <GroupBox Header="Изменение видимой части" Grid.Column="0" Margin="5,4.8,5,7" Grid.Row="1" IsEnabled="{Binding IsTerrainGenerated}">
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="0.55*"/>
@@ -125,7 +121,7 @@
                 </Grid>
             </GroupBox>
 
-            <GroupBox Header="Поворот" Grid.Column="1" Margin="5,4.8,5,7" Grid.Row="1" IsEnabled="False">
+            <GroupBox Header="Поворот" Grid.Column="1" Margin="5,4.8,5,7" Grid.Row="1" IsEnabled="{Binding IsTerrainGenerated}">
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="0.55*"/>
@@ -137,11 +133,11 @@
                         <TextBox Name="DeltaAngle_textbox" Margin="2,10,5,10" MinWidth="60" MaxLength="8"/>
                     </DockPanel>
 
-                    <Button Command="{Binding }" Content="Применить" Grid.Row="1" Margin="40, 2.5, 40, 2.5"/>
+                    <Button Command="{Binding Path=RotateTerrainCommand}" CommandParameter="{Binding Text, ElementName=DeltaAngle_textbox}" Content="Применить" Grid.Row="1" Margin="40, 2.5, 40, 2.5"/>
                 </Grid>
             </GroupBox>
 
-            <GroupBox Name="ScaleTerrainView" Header="Масштабирование видимой части" Grid.Column="0" Margin="5,3,5,5" Grid.Row="2" Grid.ColumnSpan="2" IsEnabled="False">
+            <GroupBox Name="ScaleTerrainView" Header="Масштабирование видимой части" Grid.Column="0" Margin="5,3,5,5" Grid.Row="2" Grid.ColumnSpan="2" IsEnabled="{Binding IsTerrainGenerated}">
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="0.55*"/>
@@ -172,7 +168,7 @@
                 </Grid>
             </GroupBox>
 
-            <GroupBox Name="RotateLightSourse" Header="Поворот источника света" Grid.Column="0" Margin="2,3,3,1.6" Grid.Row="3" Grid.ColumnSpan="2" IsEnabled="False">
+            <GroupBox Name="RotateLightSourse" Header="Поворот источника света" Grid.Column="0" Margin="2,3,3,1.6" Grid.Row="3" Grid.ColumnSpan="2" IsEnabled="{Binding IsTerrainGenerated}">
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="*"/>

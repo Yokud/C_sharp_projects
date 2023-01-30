@@ -13,23 +13,29 @@ namespace ARTGApp
     class TerrainModel : ModelVisual3D
     {
         HeightMap heightMap;
-        ILandGenerator generator = new PerlinNoise(96);
+        ILandGenerator generator;
 
         MeshGeometry3D mesh;
         Material material;
 
-        public TerrainModel(int width, int height)
+        public TerrainModel(int width, int height, ILandGenerator landGenerator)
         {
+            generator = landGenerator;
             heightMap = new HeightMap(width, height, generator);
 
             mesh = GetMesh();
-            material = new DiffuseMaterial(Brushes.Red);
+            material = new DiffuseMaterial(Brushes.LightGreen);
 
             GeometryModel3D model3D = new GeometryModel3D();
             model3D.Geometry = mesh;
             model3D.Material = material;
 
             Content = model3D;
+        }
+
+        public TerrainModel(int width, int height) : this(width, height, new PerlinNoise(192))
+        {
+
         }
 
         MeshGeometry3D GetMesh() 
